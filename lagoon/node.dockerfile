@@ -1,4 +1,4 @@
-FROM uselagoon/node-16-builder:latest as builder
+FROM uselagoon/node-18-builder:latest as builder
 COPY . /app/
 RUN yarn
 
