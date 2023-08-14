@@ -1,49 +1,86 @@
-import { OpenAI } from "langchain/llms";
-import { LLMChain, ChatVectorDBQAChain, loadQAChain } from "langchain/chains";
-import { HNSWLib } from "langchain/vectorstores";
-import { PromptTemplate } from "langchain/prompts";
+import { OpenAI } from 'langchain/llms/openai'
+import {
+  LLMChain,
+  ConversationalRetrievalQAChain,
+  loadQAChain,
+} from 'langchain/chains'
+import { HNSWLib } from 'langchain/vectorstores/hnswlib'
+import { PromptTemplate } from 'langchain/prompts'
 
 const CONDENSE_PROMPT = PromptTemplate.fromTemplate(`Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
 Chat History:
 {chat_history}
-Follow Up Input: {question}
-Standalone question:`);
+Human: {question}
+Standalone question:`)
 
+// If the question is not about a recipe or ingredients or composetheweb, politely inform them that you can only answer questions about food, recipes, and composetheweb.
 const QA_PROMPT = PromptTemplate.fromTemplate(
-  `You are an AI assistant for the cooking and recipe website https://next.demo.composetheweb.com. The recipes and articles are located at https://next.demo.composetheweb.com.
-You are given the following extracted parts of a long document and a question. Provide a conversational answer with a hyperlink and list of ingredients where possible.
-Always provide the full recipe and list of ingredients if providing a souce URL.
-You should only use hyperlinks that are explicitly listed as a source in the context. Do NOT make up a hyperlink that is not listed.
-If the question includes a request for a recipe, provide the full recipe with a list of ingredients.
-If you don't know the answer, just say "Hmm, I'm not sure." Don't try to make up an answer.
-If the question is not about a recipe or ingredients or composetheweb, politely inform them that you are tuned to only answer questions about food, recipes, and composetheweb.
+  `You are an AI assistant for a food blog (https://next.demo.composetheweb.com). 
+
+You are given extracted parts of a long document and a question. 
+Provide a very brief conversational answer unless explicily asked for more.
+
+If you don't know the answer, just say "Hmm, I'm not sure." NEVER make up an answer.
+
+
 Question: {question}
+
 =========
 {context}
 =========
-Answer in Markdown:`);
 
-export const makeChain = (vectorstore: HNSWLib, onTokenStream?: (token: string) => void) => {
+RULES
+- NEVER make up a hyperlink that is not in the context metadata.
+- Always format ingredients in a list
+- Bold heading text like Ingredients:, Recipe: Directions:, etc.
+- Always include the source of all recipes or article as a hyperlink at the bottom of the response
+- Never include the full recipe in the response unless specifically asked for
+- Never include the ingredients in the response unless specifically asked for
+- Never link the word "here" and always link and bold any title of a recipe or article
+- Always link the title of a recipe or article to the source of the recipe or article
+
+=========
+Answer in Markdown: 
+Source: 
+`,
+)
+
+export const makeChain = async (
+  vectorstore: HNSWLib,
+  onTokenStream?: (token: string) => void,
+) => {
   const questionGenerator = new LLMChain({
     llm: new OpenAI({ temperature: 0 }),
     prompt: CONDENSE_PROMPT,
-  });
-  const docChain = loadQAChain(
-    new OpenAI({
-      temperature: 0,
-      streaming: Boolean(onTokenStream),
-      callbackManager: {
-        handleNewToken: onTokenStream,
-      }
-    }),
-    { prompt: QA_PROMPT },
-  );
+  })
 
-  return new ChatVectorDBQAChain({
-    vectorstore,
+  const llm = new OpenAI({
+    modelName: 'gpt-4',
+    temperature: 0,
+    streaming: Boolean(onTokenStream),
+    callbacks: [
+      {
+        handleLLMNewToken: onTokenStream,
+      },
+    ],
+  })
+
+  const docChain = loadQAChain(llm, {
+    prompt: QA_PROMPT,
+    type: 'stuff',
+  })
+
+  const chain = new ConversationalRetrievalQAChain({
+    // verbose: true,
+    retriever: vectorstore.asRetriever({
+      metadata: { title: true, source: true, tags: true },
+    }),
+    returnSourceDocuments: true,
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
-  });
-}
+  })
 
+
+  return chain
+}

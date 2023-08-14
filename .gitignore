@@ -28,15 +28,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# Used env file
-.env
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-ingested_data/
-langchain.readthedocs.io/
+.env

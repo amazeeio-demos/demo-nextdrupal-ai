@@ -1,43 +1,39 @@
 {
-  "name": "chat-langchainjs",
+  "name": "ai-chatbot-starter",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "download": "sh ingest/download.sh",
-    "ingest": "tsx -r dotenv/config ingest.ts"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@mui/material": "^5.11.4",
-    "@next/font": "13.1.6",
-    "cheerio": "^1.0.0-rc.12",
-    "dotenv": "^16.0.3",
-    "eslint": "8.34.0",
-    "eslint-config-next": "13.1.6",
-    "hnswlib-node": "^1.2.0",
-    "langchain": "0.0.15",
-    "next": "13.1.6",
-    "openai": "^3.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-markdown": "^8.0.5",
-    "ws": "^8.12.1"
-  },
-  "devDependencies": {
-    "@types/node": "18.13.0",
+    "@tabler/icons-react": "^2.9.0",
+    "@types/node": "18.15.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@types/ws": "^8.5.4",
-    "cohere-ai": "^5.0.2",
-    "ts-node": "^10.9.1",
-    "tsx": "^3.12.3",
-    "typescript": "4.9.5"
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "eventsource-parser": "^0.1.0",
+    "hnswlib-node": "^2.0.0",
+    "langchain": "^0.0.127",
+    "next": "13.2.4",
+    "openai": "^3.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.7",
+    "remark-gfm": "^3.0.1",
+    "rome": "^12.1.3",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "4.9.5",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "ts-node": "^10.9.1"
   }
 }

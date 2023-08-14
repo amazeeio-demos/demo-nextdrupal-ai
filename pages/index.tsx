@@ -1,197 +1,137 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Image from 'next/image';
-import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import CircularProgress from '@mui/material/CircularProgress';
-import { fetchEventSource } from '@microsoft/fetch-event-source';
-
-type Message = {
-  type: "apiMessage" | "userMessage";
-  message: string;
-  isStreaming?: boolean;
-}
+import { Chat } from "@/components/Chat/Chat";
+import { ChatInput } from "@/components/Chat/ChatInput";
+import { Footer } from "@/components/Layout/Footer";
+import { Navbar } from "@/components/Layout/Navbar";
+import { Message } from "@/types";
+import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-  const [userInput, setUserInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [messageState, setMessageState] = useState<{ messages: Message[], pending?: string, history: [string, string][] }>({
-    messages: [{
-      "message": "Hi there! How can I help?",
-      "type": "apiMessage"
-    }],
-    history: []
-  });
-  const { messages, pending, history } = messageState;
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const messageListRef = useRef<HTMLDivElement>(null);
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll chat to bottom
-  useEffect(() => {
-    const messageList = messageListRef.current;
-    if (messageList) {
-      messageList.scrollTop = messageList.scrollHeight;
-    }
-  }, [messages]);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-  // Focus on text field on load
-  useEffect(() => {
-    textAreaRef.current?.focus();
-  }, []);
+  const handleSend = async (message: Message) => {
 
-  // Handle form submission
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const question = userInput.trim();
-    if (question === "") {
+    message.content = message.content.trim();
+    if (message.content === "") {
       return;
     }
 
-    setMessageState(state => ({
-      ...state,
-      messages: [...state.messages, {
-        type: "userMessage",
-        message: question
-      }],
-      pending: undefined
-    }));
+    const updatedMessages = [...messages, message];
 
+    setMessages(updatedMessages);
     setLoading(true);
-    setUserInput("");
-    setMessageState(state => ({ ...state, pending: "" }));
 
-    const ctrl = new AbortController();
-
-    fetchEventSource('/api/chat', {
-      method: 'POST',
+    const response = await fetch("/api/chat", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        question,
-        history
-      }),
-      signal: ctrl.signal,
-      onmessage: (event) => {
-        if (event.data === "[DONE]") {
-          setMessageState(state => ({
-            history: [...state.history, [question, state.pending ?? ""]],
-            messages: [...state.messages, {
-              type: "apiMessage",
-              message: state.pending ?? "",
-            }],
-            pending: undefined
-          }));
-          setLoading(false);
-          ctrl.abort();
-        } else {
-          const data = JSON.parse(event.data);
-          setMessageState(state => ({
-            ...state,
-            pending: (state.pending ?? "") + data.data,
-          }));
-        }
-      }
+        question: message.content,
+        history: updatedMessages
+      })
     });
-  }
 
-  // Prevent blank submissions and allow for multiline input
-  const handleEnter = (e: any) => {
-    if (e.key === "Enter" && userInput) {
-      if(!e.shiftKey && userInput) {
-        handleSubmit(e);
+    if (!response.ok) {
+      setLoading(false);
+      throw new Error(response.statusText);
+    }
+
+    const data = response.body;
+
+    if (!data) {
+      return;
+    }
+
+    setLoading(false);
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+    let isFirst = true;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+
+      if (isFirst) {
+        isFirst = false;
+        setMessages((messages) => [
+          ...messages,
+          {
+            role: "ai",
+            content: chunkValue
+          }
+        ]);
+      } else {
+        setMessages((messages) => {
+          const lastMessage = messages[messages.length - 1];
+          const updatedMessage = {
+            ...lastMessage,
+            content: lastMessage.content + chunkValue
+          };
+          return [...messages.slice(0, -1), updatedMessage];
+        });
       }
-    } else if (e.key === "Enter") {
-      e.preventDefault();
     }
   };
 
-  const chatMessages = useMemo(() => {
-    return [...messages, ...(pending ? [{ type: "apiMessage", message: pending }] : [])];
-  }, [messages, pending]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    setMessages([
+    ]);
+  }, []);
 
   return (
     <>
       <Head>
-        <title>amazee.io Umami Demo AI</title>
-        <meta name="description" content="amazee.io Umami Demo AI" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Chatbot UI</title>
+        <meta
+          name="description"
+          content="A simple chatbot starter kit for OpenAI's chat model using Next.js, TypeScript, and Tailwind CSS."
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.cloud}>
-          <div ref={messageListRef} className={styles.messagelist}>
-            {chatMessages.map((message, index) => {
-              let icon;
-              let className;
 
-              if (message.type === "apiMessage") {
-                icon = <Image src="/aioicon.png" alt="AI" width="30" height="30" className={styles.boticon} priority />;
-                className = styles.apimessage;
-              } else {
-                icon = <Image src="/usericon.png" alt="Me" width="30" height="30" className={styles.usericon} priority />
+      <div className="flex flex-col h-screen">
+        {/* <Navbar /> */}
 
-                // The latest message sent by the user will be animated while waiting for a response
-                className = loading && index === chatMessages.length - 1
-                  ? styles.usermessagewaiting
-                  : styles.usermessage;
-              }
-              return (
-                  <div key={index} className={className}>
-                    {icon}
-                    <div className = {styles.markdownanswer}>
-                      <ReactMarkdown linkTarget="_blank">{message.message}</ReactMarkdown>
-                    </div>
-                  </div>
-              )
-            })}
+        <div className="flex-1 pb-4 overflow-autosm:pb-10">
+          <div className="relative flex flex-col items-stretch flex-1 w-full h-full overflow-auto transition-width">
+            <Chat
+              messages={messages}
+              loading={loading}
+              onSend={handleSend}
+
+            />
+            <div
+              className="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient pt-2 md:pl-2 md:w-[calc(100%-.5rem)]">
+              <ChatInput onSend={handleSend} loading={loading} />
+            </div>
+            <div ref={messagesEndRef} />
           </div>
         </div>
-        <div className={styles.center}>
-          <div className={styles.cloudform}>
-            <form onSubmit={handleSubmit}>
-              <textarea 
-                disabled={loading}
-                onKeyDown={handleEnter}
-                ref={textAreaRef}
-                autoFocus={false}
-                rows={1}
-                maxLength={512}
-                id="userInput" 
-                name="userInput" 
-                placeholder={loading? "Waiting for response..." : "Type your question..."}  
-                value={userInput} 
-                onChange={e => setUserInput(e.target.value)} 
-                className={styles.textarea}
-              />
-              <button 
-                type="submit" 
-                disabled = {loading}
-                className = {styles.generatebutton}
-              >
-                {loading ? (
-                  <div className={styles.loadingwheel}>
-                    <CircularProgress color="inherit" size={20}/>
-                  </div>
-                ) : (
-                  // Send icon SVG in input field
-                  <svg viewBox='0 0 20 20' className={styles.svgicon} xmlns='http://www.w3.org/2000/svg'>
-                    <path d='M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z'></path>
-                  </svg>
-                )}
-              </button>
-            </form>
-          </div>
-          <div className = {styles.footer}>
-            <p>Original work by <a href="https://github.com/hwchase17/langchain" target="_blank" rel="noreferrer">
-                LangChain
-              </a>. Built by <a href="https://twitter.com/chillzaza_" target="_blank" rel="noreferrer">Zahid</a> and <a href="https://twitter.com/_seanyneutron" target="_blank" rel="noreferrer">Sean</a>.</p>
-          </div>
-        </div>
-      </main>
+        {/* <Footer /> */}
+      </div>
     </>
-  )
+  );
 }
