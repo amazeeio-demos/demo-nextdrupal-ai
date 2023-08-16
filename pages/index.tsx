@@ -85,9 +85,9 @@ export default function Home() {
   };
 
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
   useEffect(() => {
     setMessages([
