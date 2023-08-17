@@ -1,0 +1,405 @@
+Introduction
+
+Patrick: [00:00:59] My guest today is Des Traynor. Des is the Co-founder and Chief Strategy Officer of Intercom, a customer service solution that helps businesses answer product questions, offer instant support and automate sales. The business was founded in 2011, and their products operate with 25,000 businesses, including the likes of Amazon, Lyft and Atlassian.
+
+Our conversation is roughly split in half. First, we talk about AI and how it's actually changing businesses like Intercom through products such as their OpenAI-powered bot called Fin. We then talk about Des's views as an investor, which includes an answer about software that I'll remember for a long time. Please enjoy my conversation with Des Traynor.
+
+How Des Has Seen the Explosion of AI in 2023
+
+Patrick: [00:01:39] So I've been so excited for this because I think it's the perfect excuse to talk to a real practitioner, builder, entrepreneur about what it's been like to feel the explosion of AI and its impact both exciting, maybe even scary on an existing product, an existing software product that's always been very cutting edge in terms of its architecture, et cetera, and how you approach this new opportunity/threat.
+
+Everyone, I think, has this bomb that went off in the technology scene. And I'd love you to begin by just giving me your high-level thoughts on what it's been like to see ChatGPT, GPT-4, all the open-source models, all this explosion of new technology through the lens of an existing, really successful software business.
+
+Des: [00:02:23] It's been a good roller coaster, the fun one. We have dabbled in AI since 2016. We've had AI products live in market. I think the world changed with ChatGPT, both capabilities of what AI could do change and also I think people's willingness to engage with a bot was a lot different after their first experience of ChatGPT.
+
+For us, I met with our Head of ML, I think the day after ChatGPT dropped. We had a pretty long conversation where he was pretty firm that this is the single biggest transformation he's seen in AI and he's spent his entire career in it. The more he played, what he realized was, "Hey, this thing is very conversational. It can learn, it can summarize, it can extract the main pieces. And given a query and given a set of information, it can actually propose an answer."
+
+And that is basically what customer support is. So the implications for customer support at Intercom, we're a customer service platform, it’s implications are pretty obvious. It sounded probably more like a prophecy at the time, but I think looking back I would think, yes, now it's pretty obvious that the entire world of customer support was going to change.
+
+So the question was, how quickly can we do it? We developed tools, a lot of projects. It wasn't quite code red, but it was -- it's close to it can be from an offensive point of view, let's go hard, AI. The team worked insanely hard and we produced our first release. So we had our first release in beta in December, and then we talked about it publicly in January.
+
+And that was all about assisting the customer support rep because we weren't yet sure that the tech would actually be good enough to face end users. But we knew it was definitely good enough to augment the customer support agent. GPT-4 was on its way around then. Since we got our hands on that, that was where we were able to say, "Hey, we can constrain this agent to not go off-topic, to not take opinions about whatever politics or to not recommend your competitors or to not do anything you wouldn't want to support rep to do."
+
+And we can also, we believe, curtail the vast majority of the hallucinations by basically with the right amount of prompting. So we started to play with that. We launched that in beta in March then we went to general availability, I think, in late May or early June. And that's been a wild ride, just seeing how the bot almost always is outperforming what our expectations of it are.
+
+In terms of like the complexity, the nuance, customers will send us seven questions, not knowing they're talking to a bot. Seven questions with nested if this, then how do I that. Fin just blitzes through genuine conversations that might have taken a support rep an hour to aggregate all the information.
+
+Fin is just blitzing it, and there are some shocking stats. We've seen customers see 50% of their support volume drop. We've seen, on average, most customers who turn Fin on would know what would work, literally clicking an on button are getting 15%, 20%, 25% of their support volume just going away, straightaway.
+
+And it's just been crazy to see a product where we knew we had done all the right stuff on our side, but you're still crossing your fingers going, "I hope it works well in the aviation industry," sure enough it does. So it's been wild to see it upfront, and we've continued, and obviously, we can talk more about it, but yes, we're now asking ourselves what's the next tier of this. How do we make it more powerful? How do we make it interoperate with humans better, et cetera?
+
+Patrick: [00:05:29] Do you think that this technology is actually more powerful for existing companies that have prebuilt products and big data stores and big teams, et cetera, versus de novo start-ups that are trying to -- let's say, for example, someone wanted to build a from scratch Intercom competitor starting tomorrow and they've got all this great new technology.
+
+Often in the history of technology if you're using new -- you can counter position using new technological platforms or whatever and really stick it to incumbents. My experience so far has been it feels different in this context and that actually fast-moving incumbents as long as they recognize it are better positioned, do you think that's right? Has it felt that way to you? Any big thoughts that you have on that idea?
+
+Des: [00:06:15] I'm thinking with this a lot both from an Intercom perspective, and there are a lot of people trying to do customer support start-ups based on OpenAI's tech at the moment. And then I've also been thinking about it as an investor as well, just looking at the start-up scene, seeing what's new. The way I've concluded is -- and by the way, in your example, let's just assume, we'll take off the table the idea that GPT can write the code to make it the Intercom competitor. Let's assume all those things are true forever.
+
+I think if the way in which you would rebuild the competitor, let's say, I'm trying to build a competitor to Intercom to make it not personal for lack of a better word, let's pick say, like a Mailchimp or something like that, an e-mail newsletter tool. Everyone understands the gist to it. The question I would have is, does the way in which you build the competitor, is it substantially different to how Mailchimp is architected. Are there some fundamental assumptions made in the code base of Mailchimp that are now entirely invalidated? Do they just make no sense anymore?
+
+And if that is the case, then I think yes, the opportunity is with the new start-up because what Mailchimp has to do if they want to compete is actually build a whole new thing. But I think in most cases, and if we just keep pulling the e-mail Mailchimp example, if you and I say, "Hey, Patrick, let's go build a Mailchimp competitor and we're going to use AI, and it's going to do AI to write your newsletters and AI to generate your designs, brilliant."
+
+So we still have to build a massive deliverability platform. We still have to build link attribution. We still have to build e-mail rendering and testing e-mail rendering across a dozen different clients. We still probably have to build up a brand credibility and all of that stuff. And all that Mailchimp has to do is shell out to OpenAI for augmenting the text already. So in that world, I think you might be in some 80-20, 80% of the existing tech still stands and 20% is going to be new stuff coming from OpenAI or coming from Anthropic or whoever we lean on. So I don't really see an advantage.
+
+And the calculus I'd actually do when I talk to the companies about prospective investments or want to assess Intercom threat is basically how fast can they move. Let's assume that you and me and our super-hot new start-up can move 10x the speed of Mailchimp. And let's say we conclude, it takes us three months to build all the AI stuff and it might take Mailchimp 30 months. The question is, is 27 months enough for me and you to go and build every other feature in Mailchimp to the same standard. And if it's not, then we're goosed, we don't really have a play to make there.
+
+To give you just one counter example, let's say me and you said, "Hey, we're going to build a tool that's one of these advertisement management optimization tools." You log in every day and you see what ads are working and you change your spends and you cancel some ads and tweak some ads. You could imagine how a LLM-powered tool could basically optimize itself, consistently create new versions of ads, run those instead, run A/B test amongst itself and literally entirely manage your entire ad inventory directly without anyone ever having to log in.
+
+And in that world, I think a lot of the assumptions of the incumbent are totally invalid. They might have dashboards and reports of lovely funnels for configuring occupants, but it's all unnecessary. The AI is going to do it all for you. So in that world, if we're going to go after a space where, hey, we would actually build this thing substantially different were we building it today, I think all the advantage is within the entrant. That's when it gets exciting.
+
+Patrick: [00:09:34] So talking again about Intercom, if with stats up to 50% of customer service requests is handled end-to-end without a human in the loop, the whole thing you just described is a gradient. It's never one or the other. It's somewhere on a spectrum. So where do you feel like you fall on that spectrum of this is an entirely new thing versus, oh, yes, to build the rails underneath the delivery of this thing is like the Mailchimp example, it takes four years?
+
+Des: [00:10:01] I think we're somewhere in the middle where whole workflows are removed in Intercom's case, but not the entire platform. There are still humans doing support, and they still need a pretty rich and powerful support help desk and they still need a messenger to communicate through. All of that needs to be available through APIs. You still need a knowledge base. There's a lot of other stuff that still has to be built. And then obviously, Intercom also has proactive support sort of the messaging pieces as well.
+
+So I think what we have had to do is reimagine and throw away parts of Intercom that assumed, say, our reporting infrastructure is very different in a world where 50% of the responses are going through AI. All of a sudden, people care a lot about the AI reporting whereas they didn't before. Measures like first response time right now are no longer really valid because you have this tracked AI and all that stuff.
+
+So I think if you can imagine of all the support work that happens, X percent of it's gone, the remainder still needs, what we would call, like a classical high-quality help desk. A good chunk of the work just disappears entirely. And then there are some features or some workflows, we'll see how we play it out where we'll probably heavily augment them with AI. So you could imagine analyzing what are the most common complaints from customers today.
+
+I can imagine we'll throw a lot more AI at that feature to remove the needle in a haystack approach and actually maybe the new version of that report has just a summary paragraph that tells you here is the biggest issues going on today. So I think that will be an example of workflow displacement.
+
+But I think in general, we believe the future of customer service will still involve humans and bots. And we care a lot about making sure that they can work together really well and they can interoperate, and we have this idea of a flywheel where the humans help the bots and the bots help the humans. If we're right, anyone who wants to be this also needs to have a pretty high-quality help desk, too.
+
+Steps for Building Practical AI Tools
+
+Patrick: [00:11:38] Can you help me understand the nuts and bolts of working backwards from a thing that I think everyone wants, and I'll call that thing an agent, that is context-specific to their business or themselves or whatever, where the feeling of ChatGPT which is so magical or GPT-4 so magical, but with all the context and the knowledge trained on me or trained on my business. And we just said people helping bot and bots helping people.
+
+It sounds like this is a process to take the generic, broad artificial intelligence, whichever provider you use and make it context-specific or really helpful to me specifically, there's this process of retraining it or narrowly training it. So can you just literally tell me the steps of what you've learned about how that works? Because it seems reasonable to me that we're going in that direction.
+
+Everyone's going to have an agent that is tailored and aware of their specific circumstances and context and data and so on, and you're one of the first to actually build this process of training this thing. And I think of Fin is -- okay, Fin is the Intercom agent. It is a multipurpose thing, but it's very context-specific to your product and your world. So what have been the steps, the mistakes, the considerations? The details of this are really interesting to me if this is where the world is going.
+
+Des: [00:12:55] There's a lot to this. But the biggest things, I think, we lean on OpenAI mostly to power Fin’s decision-making ultimately like its judgment and also its conversational capability. So we don't have to build stuff like, hi, how are you, oh, I'm good, how are you. All of that type of boilerplate salutation and all that, OpenAI is just really good at. It's really good even when we want to get to a point where our customers can have Fin speak in their own branded tone of voice, so like a surf shop and a bank can sound appropriate for their domain.
+
+So I think our biggest challenge initially was how do we get it to stay on topic and how do we get it to not apply knowledge that has nothing to do with your business. So if you go to any Fin instance and ask like, who is the President of America, it actually won't attempt to answer it because that's a slippery slope. When you see a lot of people go down the slippery slope where you can force it to then take opinions that the company doesn't want to take.
+
+Getting the bot despite all its infinite wisdom to refuse to engage in topics that are anything other than this bank or this surf shop or this podcast or whatever, it's an important step and then removing hallucinations. So it doesn't do its best to, how would you say, please the user by making s*** up, they are the first two things. In practice, how does that happen? Well, we discern these most important pieces from the user. So when they come on and say, "Hey, how do I, whatever, reset my password or open an account or whatever?"
+
+You look for the guts of what they're actually asking, you perform some vector searches across all the docs that you've gathered and that can include everything from your public knowledge base, the entire conversation that's led up until this point in the thread. So it could do things like how do I do that and it can infer what the data means, et cetera.
+
+So you have to perform a search of given that this is the question, drinking in all of this context, what do we suppose is the right answer? And then how we package that answer in a way that sounds again on brand and appropriate for where the conversation is at right now, depending on the tone it's taking. So that's most of the work.
+
+It's about -- the vector search is really important. The knowledge sources are the single biggest variant. When we see people with like amazing Fin instances and like weaker Fin instances, it's literally how much have you fed it, how much have you given it access to everything about this user, everything about your product, your product docs.
+
+It's been impressive how Fin can even read stuff we didn't expect, be it like API docs or things like that, to actually suggest extra answers or refer the reading for the users. But that's a lot of what it's been about. And for us, one of our challenges was coming up with a ability to benchmark where different versions are at because we can tweak and change prompting or we can change model and point it at the GPT-3.5 Turbo versus 4.
+
+And it's nuanced a lot of the time to see the differences until you spot them and then you realize, oh, thing is actually going to go and recommend our competitor or it will go off topic or whatever. One thing we've learned of late is there are so many people who have built their wrapper around GPT-3.5 Turbo. And if you just test them all by asking a really obvious question and getting a really obvious answer, you're going to conclude they're all the same bot.
+
+It is unfortunate, and I say unfortunate for us because it's in the nuance and in the more likely scenarios. That's where you realize some bots are very good and some bots are very bad. They can all say, what does X do or what does this company do. It's really when you get into specifics about like a refund request or you try to make it go off topic. That's where you see it's underperformance or you see the lack of prompting, the lack of training, et cetera.
+
+And even yesterday, we released a bot, Buyer's Guide, because we're trying to teach customers about these differences. Obviously, you hate having the market nuance, we’d rather we were the only Fin in town. But that's not the case. It was the case for three or four months, but now there’s a lot of YC start-ups doing it. Now we're into who's got the most, who’s talked this through the most. Ultimately, I still think though, as I said earlier, the battle will really shift being who has the right platform, who is the holistic solution for customer service.
+
+Patrick: [00:16:35] If you think about the examples you've seen so far, some of which have crazy, staggering numbers that you quoted in terms of how much of the previous product that was human-focused is now and then handled by a machine. Where do you think the natural endpoint of this is for your business?
+
+I'm curious what the adoption has been. Like how many of the normal Intercom customers are using Fin in some way, shape or form? So what's the friction to getting on this train? And where does it go? Is the natural endpoint that customer service is 80%, 90% handled by AI and it’s just the strange edge cases get spit out to a much smaller support desk? Where do you think this goes? And what have been the frictions to adoption?
+
+Des: [00:17:15] The largest barrier is the people aspect. So it's -- customer support, generally speaking, is a human-operated industry. And if we move a button in Intercom's inbox, we get -- our support teams get fed fire by our customers because they're like, oh, if you're going to sneak a single change to this inbox, we have to have an off-site to retrain our entire staff. And when you realize that, that could be hundreds of people, we have customers who have thousands of Intercom seats.
+
+So one single change of, hey, it used to say send and close and now it just says send, that could literally set a large Intercom instance back weeks in terms of support volumes. So we're very delicate about how we make these changes. The other side of that friction is our customers are very, very slow to adopt for a very good reason because they’d say, "Okay, we will try," -- so what we're seeing a lot in say, Fin’s case, we have many, many, many, hundreds, if not thousands of Fin users spitting out tens of thousands of answers on a regular basis, et cetera.
+
+But what we're seeing is everyone wants to dip their toe, they don't want to say, "Let's point Fin at the entire support volume." What they say is, "Hey, let's turn Fin on, on the weekends," or they say things like, "Let's turn Fin on if and only if the question regards resetting a password or something like that." And they are doing that because they want to get a sense of how is it performing in a smaller use case. And then ultimately, we've only really been live to literally everyone, I think about eight weeks.
+
+We have a lot of planned larger migrations where our customer support teams are going to switch over to a massive amount of volume going to Fin, but they're busy working on their knowledge bases and they're busy working on their snippets, et cetera. The snippets being the things that Fin reads to produce answers.
+
+So I think what we're seeing is a lot of people preparing for this world, but the friction is definitely how do I get my support team on board, how do I make sure that we're doing all the right stuff. Even in a lot of cases, all our help docs are out of date and we didn't realize it, but our customer support team were saving our ass. And now we need to get data help docs before we let Fin in.
+
+The other question you asked is, where does it stop. I think that's genuinely something we don't really know the answer to. We will very shortly have live in market this Fin generated snippets feature, where Fin will read your entire conversational context for your business going all the way back, and it will learn from every live conversation that happens. And it will produce snippets, little nuggets of knowledge to augment its own understanding of your business along the way. Our vision for that will be that your customer support team deals with any common query they see, they should see it for the first time and the last time. They should basically answer it once and believe that they’ll never see it again.
+
+Where we want them to spend their time is on high-value brand building, high urgency, high-impact conversations. We want them spending time on proactive support. We want them reaching out rather than like dealing with customers when stuff goes wrong, we want them reaching out to make sure that everything goes right. That's the future world we want for support.
+
+In terms of what percentage could actually a raw inbound could go through, it will vary vertical by vertical. If you think about, say, an e-commerce store, there's really only 10 questions you ever ask. It's, where's my order, why is it late, I want to refund it or I’ve broke -- what's most exciting to us is what will the snippets feature do because you're just going to keep aggregating knowledge.
+
+If you take Intercom, we do 20,000 support conversations a month, so about 0.25 million a year. If we just look back two years, that's 0.5 million conversations on top of our entire knowledge base and our API docs and all of our training material and our education material, it's a huge amount of information about the products for Fin to consume.
+
+I can't yet tell you where we will be, but I suspect it's still going to increasing -- our own resolution rate, all of our customers' resolution rates only go upwards. And then what the question is, where does it start to asymptote. We've yet to see it, but we are only at about eight weeks. So we're still at the precipice of a lot of these changes, I think.
+
+Product Philosophy, Providers and Prices
+
+Patrick: [00:20:47] What is your overarching product philosophy that sits behind all this stuff? At the end of the day, this is just new technology. It's all like -- any technology, it's just something that lets you do something for someone else. Do you have an overarching product philosophy that is the bedrock on top of which you make all these decisions?
+
+Des: [00:21:04] Yes. We have a customer service manifesto, which is our set of beliefs about how the world of customer service will change over the next few years. And we've had one before. But before AI, we were mostly about conversational. We pioneered the idea of the chat thing inside your product and on your website. And that was we went hard on conversational.
+
+Today, our manifesto really has four core ideas in it. The first one is bots and humans will work together. That's a very firm belief we have. We believe humans are essential. We want to supercharge humans with AI, and we want AI-powered chatbots to reduce a lot of the work for the humans.
+
+Our second belief is that support should be proactive and reactive, which means that you should be able to get out ahead of problems. Our third is, so all support needs to be conversational and omnichannel. So we talk to customers any way they want to talk to you, anywhere or any way. And then lastly, all of this has to work together. So you can't try and stitch together three or four different tools.
+
+We often save customers from a world where they have a ticketing tool, a docs tool, an outbound tool, a different messaging live chat tool. And they have some Zapier powered or one of those cool integration powered things where they try and stitch it all together and get themselves some source of truth, but it really doesn't work very well. And we do all of that, the higher level thing is in service of an internet full of better customer service. Our mission from 2011 has been make internet business personal, and that's really what we're about.
+
+Patrick: [00:22:26] If you think about the choice between providers underneath all this, something I don't think you and I have talked about yet, how do you approach that problem? GPT-4 has won the Kleenex battle or something, that's the thing everyone thinks of. But the reality is there's lots of tissue providers and it seems there will be more every year. How do you assess these things? They're so complicated and nuanced and interesting. You mentioned Anthropic earlier, there's open source inside of Facebook.
+
+Des: [00:22:54] LLaMA, there's Cohere.
+
+Patrick: [00:22:55] Yes, there's all these cool things happening. So talk us through that part of all this. If I think about Azure versus AWS, you can build your software on any of the big three cloud providers or something with the little differences. Is it the same story here? Is it just subtle differences? Or is there a clear leadership from OpenAI or someone else?
+
+Des: [00:23:14] From our perspective, I suspect it will end up a lot like the Azure versus Microsoft type thing. Certainly, it's trending that way. We started with OpenAI because they were first out of the gates. And we've been partners with them for quite a while. We've had our early access to previous versions of all this tech.
+
+They do seem to be leading the way, too. GPT-4 when they released it was definitely a head and shoulders above everything else that was out there. So I think we're going to partner with whoever we think is going to give us most access to the best tech. The reason we’d change will be probably more of either somebody else has better tech, which has yet to happen, or it will be like some later day optimization of, hey, you could imagine something like Anthropic is available in an EU instance of Amazon, and we can't get GPT over there. So let's swap or let's -- you can imagine some version like that where we do it for business reasons.
+
+So we’d either -- if we were to go and chase anyone else, it either -- it probably either be like accessibility or availability reasons. It could be tech reasons. We just haven't seen it yet. The last one where I just -- I'd be surprised if it shakes out this way, it's just price. So GPT-4 is expensive. And as a result, Fin is perceived to be expensive. We charge $0.99 a resolution. It's way cheaper than you pay a human, but way more than you'd guess because we get an awful lot of people would just say, "But it's just an API call, how can you charge that much money?"
+
+The reality is that's what OpenAI would charge. So that's the way it -- that's how it checks out that way. But I could imagine if prices continue to run hot and people start to release substantially cheaper versions. There are genuinely features that will be prohibitively expensive for us to build today.
+
+To give you a simple example, summarize every conversation in real time as they happen. We have 500 million, 600 million conversations a month, that would bankrupt is. However, if somebody gave us a substantially cheaper version, all a sudden that's back on the table.
+
+There are pricing implications here. We haven't bumped into them yet and right now, we're still in the innovating and pioneering phase. We're trying to do as much cool stuff as we can. So it doesn't feel like we're yet in the mode to optimize. What I will say, I'm very -- I take a lot of comfort in the fact that there's so many strong competitors here. It tells me that price will go down, availability will go up and the competition to improve the tech will be pretty high.
+
+Patrick: [00:25:17] $0.99 per resolution, how does that stack up to the cost on average across Intercom's customers for a human-led resolution, do you think?
+
+Des: [00:25:26] So the first variable is, is your support done by a citizen of the United States working in San Francisco, California, or is it outsourced to an agency and if so, where is that agency located. We've never seen anyone get it substantially cheaper down to those $0.99. There is a nuance to this. If the answer to the question is no, then an agent can do 60 nodes in an hour, and you're probably not paying them $60 an hour, but that's rarely the case.
+
+Most of the time, there's a lot of time taken to onboard agents, train them or get them to be able to deal with the complexity, get them to manage multiple back and forth. But for sure, some people will show me an example and say, "That's definitely not worth $0.99." And that's true. We don't know a priori whether or not the thing that’s worth answering until we answer it.
+
+But in general, we see most support reps paid somewhere between like -- the floor here would be, I don't know, $8, $9, $10 an hour, something like that. We haven't ever outsourced to extreme low-cost providing areas. We've never outsourced support at all. But I'm sure someone will tell me you can get it for $2 or $3 an hour, well, let's see.
+
+But in all these cases, I think most of our customers who are B2B tech companies, generally speaking, they're paying more for their actual support team. And then the other aspect that people often forget is, there's a behavioral difference between a user getting an answer in 0 seconds versus in seven minutes. So if the question was, hey, I've just signed into Asana and I wanted to know how to create a project.
+
+If you answer that question immediately, they go and create the project and they continue to expand and growth goes up. If you answered that question 11 minutes later, they're on a different tab signing up for a different project. So there is value in instant support that goes beyond simply job done.
+
+Patrick: [00:27:02] Yes, it's totally fascinating. Obviously, you would expect the $0.99 thing to come down. And also the customer support agent sitting in a call center just all of a sudden feels like dystopian or something, that it's just a job that -- but for the most valuable conversations should be automated on top of a knowledge store that a company has. And I wonder why there hasn't been a company that does this for everyone.
+
+So you talked about your problems like, okay, we got to solve -- you got to make it not answer irrelevant questions and start having opinions and hallucinating and all this stuff, and then we need to train it on the customers' knowledge store. There's a process that you've built that let your customers work.
+
+Why isn't there a company that you could just hire to do all that for you, given that it seems like everyone's going to want one of these agents in their business? What matters is the data. It's not -- it seems to me like what's valuable is the companies that have great data, not the flow. So why isn't there just a provider that just does that part for everybody?
+
+Des: [00:28:00] You know what I feel is that people are too optimistic about what's possible in the short term and too pessimistic about what's possible in the long term. That's very much how I see the commentary around AI. If you said, "All right. Drink in all the S-1s that are published every year and produce stock tips or something like that." The drinking in piece isn't actually hard, it's hard to find a moat there.
+
+I think basically what is proprietary and easy to differentiate on is either your data store or the actual workflows that you build on top of the LLM’s interpretation of the data. So it is definitely easy to point an LLM at a large source of information. And even point it at, let’s say like -- something like Pinecone, pointed at a vector search across that. So we can filter it down and really get to the specific bits you want to see.
+
+What's genuinely hard is making it useful, making it do something that actually displaces a large amount of work. And if you take an area like finance or legal, I think the threshold or the requirements you'd have are pretty high in terms of trustworthiness. And I think the challenge would be being able to make a bold enough claim that you can stand over to say, "Hey, this thing will not get your conclusions wrong."
+
+If you could package that up and then integrate it into an existing workflow, I think you would actually have a great opportunity. But I think simply the ability to filter information and consume it and then given this thing, answer this question, that's not the hard bit. The hard bit is make that into a product.
+
+We're touching on the difference between a feature on a product, if you know what I mean. The ability to consume information and spit back some stuff is the feature, the product around it is reporting, accuracy, collaboration, all of the other s*** that actually makes it into something that a business would adopt. That's I still think a challenge that you have to take on if you do a start-up in this space.
+
+Managing Risks Associated with the Adoption of AI
+
+Patrick: [00:29:38] You said earlier that this was on the borderline of being a red alert or something for Intercom. Talk about how that gets managed inside of a company. I imagine there's lots of companies that are looking at this as both an existential risk and opportunity. So what do you think you did well, poorly? What advice would you give other people facing down this seismic change in terms of just managing and steering an existing company through it?
+
+Des: [00:30:03] I think the thing we got most correct -- and I put a lot of credit to this, although he won't take it, to Eoghan, our CEO, was just the speed of decision-making. I think it's very, very easy for a company to say, "Hey, it looks like this OpenAI stuff is going to be a thing. Let's form a small cross-functional team and we'll do an investigation, we'll get a readout from them in three or four weeks, and then we'll finish out the quarter's road map as we planned, and then we'll take stock and see where we're at."
+
+And I think that's probably the norm behavior for a lot of companies, is to work in that methodical way. And that's not what we did. What we actually did practically was abandoned multiple projects, deleted multiple road maps for our automated support group, for our ML team, for our Inbox team. They literally binned everything they're working on and worked on this thing instead.
+
+So start-ups often talk about how important speed is or whatever, and I certainly knew this. I often feel when I'm talking to founders that I've invested in or whatever, I'm always trying to say, "It's not their speed. It's your speed. How quickly are you going to make this decision to unlock them?" If they know you take a week for a decision, they're not going to come to you quickly with stuff.
+
+So in this exact example, Eoghan would say, "Let's go." We weren't going to wait for the data, we weren't going to wait for the evidence, we weren't going to wait for our competitors to say that they're also looking at this, we were just -- it's go time. So I think that is probably the single biggest unlock that we were able to fire the starter pistol that quickly.
+
+I was in -- I think, like 14 hours after ChatGPT dropped, we were able to go, and we started working on it. And then we probably also had a small advantage. We've been dabbling in AI for years. We have a live product called Resolution Bot, et cetera. So anyway, my advice to other companies, I think if we go back to the topic I said about the ratio of, in your new world, how important is AI and how important is everything you've already built.
+
+I think you need to work out if there are core product assumptions that are just no longer valid, you need to put down everything. Nothing else matters. If you get this wrong, nothing else matters. If you get this right, nothing else matters. It's the only thing. I think if it's not that, is it, hey, the significant workflows we can just put out and rebuild that use AI, so like reporting or whether it's image creation or something like that, then I would say like it's almost too late if you're trying to be a first in your category to say we have blah but with AI.
+
+I think everyone's over this idea of, "We also have a lightning bolt in our UI that if you click, it can invent some text." It's a done deal at this stage. You only need to look at, in my opinion, proper end-to-end workflow automations. I would start fixing my gaze a lot more on what pieces of work can we remove entirely. Because that's where the actual formula changes. We often talk internally about the formula of support, which is number of inbound, times the amount of time it takes to solve a conversation, divided by amount of support reps and all that. We look at all that.
+
+If you can just chomp out a massive amount of one of the numbers in that formula, that changes the optics of the business entirely. And I would encourage other start-up founders to say like, "Of all the tasks that have to happen in our product, which can we remove as much of as possible? Take away so much of what would now be seen as undifferentiated heavy lifting. Where can we just delete it?" And that way you have a winning product.
+
+Patrick: [00:33:03] That's interesting. So if you think about the many of these things where it's, I'll call it, Copilot for X, Y and Z, I think that you're saying something very different. Don't build another Copilot. Everyone's doing that. Everyone's adding AI to their existing thing. Instead, say what part of the customer's workflow can we just literally kill? Just have it go away completely without the -- we almost don't want customers to interact with AI. We just want things to happen as a result of AI that they don't even think about.
+
+Des: [00:33:31] That's the highest order goal you can go for. And there are cases where you can achieve that end-to-end pure automation.
+
+Patrick: [00:33:38] I mean, you've done it.
+
+Des: [00:33:40] Yes, exactly. I wouldn't say that -- the Copilot style things are useful. If you take the actual thing, GitHub Copilot, the most famous of them, it turns out finishing the sentence in code is something every programmer does dozens of times a day. So if you look at how often this thing happen and how long does the thing take, if you start writing a for loop in code, sure, it doesn't take a lot of time for you to finish the bracketing and all that stuff. But you might do that, whatever, 20 times a day, so being able to hit tab instead of having to type anything, there is a -- if you just multiply the two things at frequency times time spent. You'll actually get a sense of where the value is.
+
+And non-AI example is with like spell checking or something like that. It's just like, hey, people typo all the time, they have to go back and fix. If you can do it for them, that's better. I think you kind of look at it from that perspective, but I just think a lot of start-ups tend to go for the Copilot thing because bluntly, I think it's the easiest thing to do. "Hey, write an idea for a blog post and we'll suggest the opening paragraph."
+
+Whoop-de-do, it’s not really a huge thing. What might be a huge thing is, "Find the most common SEO terms that we're not ranking for and suggest articles we should write. And write the articles and go to DALL-E and create the images. And then suggest them back and then criticize them."
+
+Now I sit down in front of 12 suggested articles that are fully spec’d out. Now I'm starting to think, "Huh. This could be replacing a workflow." Everything else is just a little bit of a nicety along the way, I think.
+
+Patrick: [00:34:56] As an investor, how much have you seen that is exciting in this sphere?
+
+Des: [00:35:01] I would have to say I see much more of the -- what I would call like the easiest API call type AI. That is, honestly, right now, the majority of what I see is not amazing. It's very much just we also know how to summarize a piece of text or change the tone of a piece of text or whatever.
+
+That could be like, "We're a sales tool, but we can guess the opening introduction in your paragraph," or whatever. And I think those things are basically dead in the water. I think stuff like say what Rewind.ai are doing, I think, is far more powerful, drinking in a massive amount of data and then give me a natural query engine on top of it. I think that's really exciting.
+
+I think some of the visual stuff I've seen, be it like Midjourney or be it like -- this one I have invested in called Kittl where like, again, you just describe the visual of what you want and they produce a vector. And what's really cool about a vector is you can actually tweak it yourself then if it's not exactly what you wanted. I've seen really good examples of that type of thing.
+
+But I do believe that we have yet to get to the bottom of where the AI -- the high order stuff I'm describing where it's a complete automation, I think a lot of that is still to come. The question for me is, will it come from the incumbents or not. That's still, I think, an open question in a lot of these industries.
+
+Patrick: [00:36:13] When you're having conversations with peers at other software companies -- you and I were introduced by John Collison at Stripe -- what are the most common discussions, interesting discussions that you're having about all of this that's unfolding?
+
+Des: [00:36:27] The biggest question I always try to zoom in on is, I know AI is really important and it is core to this new workflow that you're going to automate or whatever. Talk to me about the rest of the products that you're building around it. And this sounds like it's maybe perhaps not the sexiest answer to give you.
+
+What I think a lot of folks have forgotten that you still have to build world-class software these days. And genuinely, it's not -- I think you said previously on Twitter something on the lines of like strategy is for amateurs and execution is for winners. And I think having a cool idea for an AI feature is genuinely -- can be unique and maybe you spotted the capability that others haven't.
+
+But in most cases, you still have to go and build an incredible piece of software around it. So you might have a unique twist on how project management should be done and it involves a bit of AI, and that's awesome. But you still need to have a PM tool that's as good as Linear. And that's still going to be a huge amount of work. So what I try to do is shift the conversation to there, just to make sure that there's actually something behind this. Because my fear in so many of these AI cases is that we're all just pinging text over to OpenAI.
+
+And these prompts and these bits of text, they might be proprietary. You might have a bit of an edge there. You might do some clever s*** client side before it goes over there, but it can't be that you're the only person who's worked out the right prompt. If you're investing in something that is built on AI, the thing that you're doing still has to be pretty brilliant, which might mean really good integrations, really good platform, beautiful UI, et cetera.
+
+The only other area I'd say I have had some interesting discussions in this -- and again, I don't know if this will fall into incumbents' benefit or start-ups benefit. It's this idea of chat-driven UI. So I'm sure there is at least one piece of enterprise bloatware that you use in your day-to-day life that is just awful.
+
+For me, it might be, say, Workday or Coupa or one of those tools were the tool is just so deeply complicated. And all that I wanted to do is file an expense or request a day off or something like that. And the next thing you know, I have nine tabs open and I've got three drop-down menus and I'm still none the wiser. I really, really in those tools want to press Command+J, book Des October 17 return or something like that.
+
+I think chat UI will be a massive impact to that whole industry where the way I describe this is when the user knows what they want to do, but they don't know how to do it in your insanely powerful or complicated, to be complementary, when the user knows what they want to do, but they don't know how to achieve it, that's when chat UI is really going to take off. And I don't know if you saw Equals, the spreadsheet tool.
+
+Patrick: [00:38:54] Yes, a little bit. Not much.
+
+Des: [00:38:56] So Equals is basically a spreadsheet tool. One of the things they have built in is AI that can gather some live data sources. But the cool thing I like about the way in which they've used AI is, I don't know Excel query language very well. And with Equals, I don't need to.
+
+I just say, "Sum up all of these before -- that were expensed before January 17 and multiply it by the CPC return," and it works it out. So you can literally write Excel queries in natural language. You can also write SQL queries in natural language, too.
+
+So what that does, from my point of view, that has made the spreadsheet an infinitely more accessible tool to millions of people who never were going to learn Excel. And I think that's where you can blow up your total addressable market, just through the magic of a chat UI. So I think that's another area of excitement for me where when I see a sustainable advantage that the chat UI I would open up, that's another thing that gets me excited.
+
+Patrick: [00:39:43] How do you think about the risk side of this? You mentioned earlier, finance or banking or maybe health care places where certainty is more important than in other places. And in Excel, I guess, it's the same thing. If this is lower stakes or approximations are fine, then that sounds amazing. But if this needs to be precisely right, then great. I'm glad I can write the query form, but then I still got to go double check that the query is doing the right thing.
+
+And in customer service, I'm sure there's elements of this, too, where some things are really easy to handle. You're just pointing someone at the right document or something. But sometimes, its criticality rises and the cost of error goes up and then you start to then worry about these models. So how do you think about tail risk of a big complex things that we don't really know how it's working, but it just works most of the time, but we need 100% of the time?
+
+Des: [00:40:32] Yes. And to make it more complicated, because you've unlocked a wider addressable market, the person will not identify the mistake. I won't know if there's a bug in the Excel stuff because I didn't know what it's supposed to look like in the first place. I think this is a genuine risk. So the answer I'm supposed to give you is, "And that's why there's always going to be a human in the loop and you turn this around." So rather than doing it for the Deses of the world, you do it for the person who actually builds spreadsheets for Des and then instead you speed them up.
+
+And I think that works to some degree, but we even see this with, say, assisted driving AI where the person has their hands in the wheel, but they're not paying anywhere near amount the same of attention as they used to because they know the car is actually driving itself. So you actually have this challenge of when criticality is high, should AI basically be left out? Do we need to have a higher threshold? How do you define that threshold? When it is purely generative, it's hard to say.
+
+I can tell you what we do in Intercom is we have a separate product to Fin called Custom Answers. And what Custom Answers does, it's more of -- how would you say -- an old-school traditional AI existed before November. And in that case, its behavior is quite different. It works something like if this query looks like it's relating to an important topic, let's say, a refund or locked out of my account or authentication, then -- so that's your AI there.
+
+So it's just like if, fuzzy logic matching, then, and then we have a very specific answer. And what we do is we use Custom Answers to target really specific things where we have a precise set of steps. And we actually can't afford to have generative conclusions. We actually need to control every word that it said.
+
+A lot of our customers use Fin and this together, and they just effectively supply said stuff that sounds incredibly important and let Fin take care of the rest. But even at that, there's still going to be a weakness there somewhere. If you keep scratching and sniffing, you'll find something that actually turned out to be more important than it sounded.
+
+I think this is the fuzzy world we're all heading into where things will be possibly more wrong than they used to be, but they'll happen in real time as opposed to taking days, weeks, months depending on the tasks being optimized. I do suspect this is why you won't necessarily see GPT used in doctors' diagnosis apps. They might speed up the doctor, but they'll still need to be a human in the loop, and we just have to hope that, say, the driver in the AI-augmented car that they're still fully switched on to what's actually going on and they're not just copying and pasting s*** out of a ChatGPT or whatever.
+
+But I think this is a new world we're entering into. There's no denying it now. There are gates and there are railings, but there are no -- I don't think there's any guarantees. It's hard to take the new technology into society and prevent all its downsides.
+
+Evolving as an Investor in the Age of LLMs
+
+Patrick: [00:42:58] As an investor, I'm really curious how you are -- whether it's different or the same as you've always viewed this as an investor. The first time we talked, you had some really interesting thoughts on just the things you look for in young companies.
+
+Even since Intercom started, the friction and expectation for starting companies has changed. There's so many of them. YC batches are so much bigger. If there's a whiff of an opportunity, all of a sudden, you get 20 people leaving their jobs to start a company. It's amazing. It's great. The world benefits from this, for sure, but I think it makes investing harder, especially given sometimes the prices are quite high.
+
+How have you evolved as an investor? What are the things you're looking for? Any philosophical changes over your investing career? And then I'll obviously talk specifically about the change that LLMs have on that, too.
+
+Des: [00:43:45] Early days, I used to get fooled a lot by just a great-looking product. Fooled is probably the wrong word. Some of them actually worked out pretty well. But just -- I thought if you could build software, that was enough almost. In some cases, some of my earliest investments that actually turned out enough of a judgment, but not certainly in later years. Beautiful UI and stunning landing pages became more commoditized or like maybe more easy to do for people. And as a result, it was probably easier to fool me at least, but I'd suspect probably easier to fool half the industry.
+
+So I think I've learned now that a product can be a really, really nice, beautiful execution and perhaps still just not work out. And I actually had one of those recently. It was a meeting like a Zoom competitor that was built with AI inside it for identifying action items and all that stuff based on what people were saying in the call and it would produce meeting notes afterwards. And it was incredible. It produced a highlights reel of the conversations. You can zoom into the exact specific moments that mattered, et cetera. It sounds cool. The problem is no wants to pay for that on top of Hangouts and on top of Zoom. Full stop.
+
+But the product -- if you saw the product today, like that's insanely brilliant. It's awesome. It looks great. It works great. I've used it many times, et cetera. But if you try and take it to a company and say, "Will you pay $7 a head for this on top of your Zoom fees?" and you're already probably buying the G Suite anyway, the answer just basically is he says no.
+
+So that's one thing that I've just become more wise to, which is -- and it sounds so stupidly obvious when I say it like that -- but the route-to-market times, the users' propensity to put their hand in their pocket is a real thing. In those cases, Zoom already has the route-to-market and G Suite is already there with the pseudo-monopoly on all things productivity inside a company.
+
+Another change I've just been trying to distill of late has been -- I find myself asking start-ups the same question a lot lately, which is, what is the single thing you can say that is unique to you, valuable to your user, true and simple. And all four things matter and most people fail on one of the four. It's either too complicated a pitch or other people can say it or your users don't give a s*** or it's not true.
+
+And that has been a really impressive -- and I often say this if it's some random company I barely know or a light or weak intro. I often say there's a pre-qualifier to actually bothering to take a call or even someone who's reading a pitch deck. And that's a maturity that I didn't have.
+
+I would have heard the pitch five years ago and gotten really caught up on how nice their product looked at and all that. Whereas now, I find if you fail at that hurdle, the chances of you being a really successful business with outsized outcome that makes angel investing makes sense is pretty slim.
+
+And then the third one, I just continue to beat the drum about is just execution. And I won't say too much about it because I know you agree. If your idea is any good, you should assume it will become commonplace and everyone will have that idea because they're going to see your version of it and then everyone is going to try and do it.
+
+If someone does it a lot better than you or can do it the same as you but faster, you're going to lose. It won't be close. You will definitely lose. First really doesn't mean a whole lot unless you -- perhaps you've build a bit of a brand maybe, but you'll get outpaced pretty quickly when somebody has a feature you don't. So I care a lot about, do defenders get that. And if the defending team isn't super technical and I'm guessing they can't design, build, execute their own software, then I always worry about that because they often don't.
+
+Patrick: [00:46:48] How did Intercom itself solve that execution problem? Because I think relatively early on, people realized, "Oh, yes, this is a thing. This is a good idea that there's a simple digital way to interact and connect with my customer in this place that they are."
+
+I'm assuming -- I don't know much about Intercom's early history, but I'm assuming that lots of people tried to do this and you won. So is the simple answer just execution? You just went faster and basically followed the advice you just gave about investing but for building.
+
+Des: [00:47:17] I'd love to say yes, but it would sound arrogant. I will say we had a s***load of competitors, copycats, people who were just literal, "right-click and view source, let's have some of that messenger code." And there are still many -- there are people who literally just copy our source on a regular basis.
+
+I think ultimately, what our customers know is that if you want the latest and greatest, Intercom is the company that has it. And I think a bet on Intercom is a bet on the persistent position as the people who are doing the newest of best. And that's why it's surprised basically none of our customers when we launched AI s*** because the tone we heard back from a lot of them was, "Of course, you guys are the first."
+
+For a lot of our customers, that's why they signed up. And we talk a lot about this. We even published -- if you go to intercom.com/changes, you'll see the rate of release from our product team. We're just consistently grinding, making things better. I think I've heard it glibly referred to as like the gingerbread man strategy, which is, "Run. Run fast as you can. You can't catch me."
+
+That's our thing. You can copy and you can copy, but it's going to be consistently yesterday's technology tomorrow. And that's not what customers want. They want the best of it there. So I think we do talk a lot about speed internally. If you talk to any of the Intercom folks, they'll be like, they're sick hearing about it. And it's not just speed again as in code-really-hard, hands-on-the-keyboard type stuff. It's speed as in processes, decision-making, et cetera.
+
+I think for what it's worth, a fear I have is all SaaS is basically UI on top of databases. So everything is copyable pretty quickly. The goal is to get a position that looks daunting to copy. If you're trying to build a project module tool and you're saying, "Hey, let's rip off Linear," you're going, "Oh, well, there goes the first 2.5 years of our road map." It's a tough one to take on.
+
+Same with Stripe, and I hope same with Intercom or whatever. You just look at me like, "S***, we really have to build all that. We're going to be at this quite a long time. And by the time we've done it, those guys move fast. So by the time we get to where they are today, they'll be long gone." And that's the hope that you can build. It's just raw product momentum as a moat if you will.
+
+Patrick: [00:49:08] Do you worry about, I guess, I'll call it the red queen effect of that style of building relative to, I'm trying to think of an extreme example, like Visa or something, which notoriously is an extremely good business because they built an unassailable competitive position? But there's no speed at Visa. If anything, it's better to have more bureaucracy like, "Don't screw up this position that we've carved out for ourselves." There's no product velocity at Visa.
+
+Running faster than everybody seems like a great way to win, and I think it is. But do you think it's necessary but not sufficient? And ultimately, you need to get yourself in a Visa-like position of, even if you wanted to copy this and you also moved really, really fast and have unlimited resources, there's something about it, you just can't even copy whether that's -- this is like a classic moat question. How do you think about that for Intercom?
+
+Des: [00:49:57] I think this, to me, is honestly where a brand comes in and that's, ultimately, you need to build, and we're in the middle of undergoing pretty expensive distillation and rebrand, if you like, of what Intercom is all about. But I think you need to transfer the energy that's felt in the product momentum into being a sustainable brand position to ultimately get to a place where it's just, "Why wouldn't you just use Intercom?"
+
+That's, I think, the best way to turn a dominant product position into a sustainable thing where you become -- it would just seem odd to not use Slack or a Stripe or a Figma or Intercom or whatever. It's just, "Why wouldn't you?" And I think because all those tools, you have to assume will get caught eventually because an Adyen or something like that will -- whatever Stripe release now, they'll have it in two years. So there will be some eventual -- there is not infinite runway in all feature sets. Eventually, you start releasing s*** just for the sake of it, and that's a dangerous place to be.
+
+So the goal as you're doing this is to transfer the credibility that exists provably in your software into the brand and ultimately capture hearts and minds from that point of view. And then, there are other like more tactical things, community evangelism, advocacy, making sure you reward the people who use your product a lot.
+
+Then there's a technical version of that, which is integrations and interoperability. Do you fit much better in the tech stack than everyone else does? Do you sign good partnerships and good data share agreements? If you use Intercom plus GitHub or Jira, it works really well together. And if you try and use new app with the same, it will be harder for them to get the same co-promotion, the same partner status, whatever. So there's other aspects to it as well.
+
+But I think job one is to honestly have the best product and the best way to do that is to move very really fast. Job two is to transfer it out into being a brand position rather than a technical position. And then job three, I think, is to then expand your tentacles into everything and, as I said, hearts and minds of your customers, partners, et cetera.
+
+Good and Bad Things About Software Businesses
+
+Patrick: [00:51:37] One of the prevailing ideas in the business world is that the pure software business is the ultimate in business because it has very high margins that can have very high retention. Sometimes it doesn't necessarily require a ton of upfront capital to get going, which is a beautiful thing.
+
+If you're on like a debate team or something, and I force you to take the opposite side to say, "Actually, like, here's the bad things about software businesses. Here's why it's not a panacea. Here's why you should consider building something other than software," what would be your debate points? And I ask this as somebody, obviously, that's done this, that succeeded in doing this at a company that's grown very large. What would be your contra points in that debate?
+
+Des: [00:52:17] I think two things come to mind. Obviously, if it was a debate, I'd prepare, but two immediate things come to mind. One is, there are very few durable moats in software. So whatever it is you have, it's almost by definition going to be copied. Someone will infer the database structure and right-click and copy the UI and all of a sudden they have the guts to your product.
+
+So that's a challenge, and we don't really play the patents game. We don't really play the exclusive partnership game in software in general. We generally tend to put it on the Internet for everyone. So whatever your piece of software is, assume everyone is coming for it. And then also, the second piece, which is just as important, software has a really -- it's very perishable. What it took to be best-in-class in project management even just three short years ago is nowhere near good enough for today's standards.
+
+And there are not a lot of categories where you can have a great product and also know that it's going to be dated as hell in 36 months. But software is one of them, so you have to continue to reinvest to maintain your position. That's the first -- if you compare that with other areas, other non-software areas you might go into, you'd find industries that don't have those true traits of insane perishability and lack of a moat of any sort, really.
+
+The third one is more of a perhaps a nuanced point, but this attention in software in general, which is the ideal software is one line of code that everyone uses in the exact same way, and it's got a massive margin on it and needs no maintenance. But in practice, in order to get a second customer, you usually need a second line of code and the 1,000th customer needs another line of code.
+
+And if you are chasing and actually trying to grow a business, the more customers you're trying to attract, usually the more -- the least settings and preferences that you have to add so that you work a different way for enterprise than you do for a start-up or whatever permissions, all that s***, which means the product just keeps getting bigger and bigger.
+
+And if you want to have a large market, you generally tend to have to adopt loads of different styles of workflows. And that means loads of different code, and that means more complicated UI. So in essence, for a product to be big and successful, it has to get worse. It could get worse for any individual, but better from a market capture point of view.
+
+So you're constantly trying to find a sweet spot along the collision of those lines, how big is the market and how simple can the product be? And what you'll find is to maintain a large product, it's inherent a product with a large total addressable market usually have to have a lot of software. And bearing in mind, as we just agreed, that software is both not protected by any moat and it's going to age out pretty badly, pretty quickly.
+
+So you have this tension of the need to continually reinvest. And now we reinvest lots because it turns out to go for a large market, we've built a s***load of software. And that is just a difference. This bottle of coke is the same one the Barack Obama would drink and the same one that Bill Gates would drink, and I'm drinking it and some rando on the street would drink it, too. That's not the case in software.
+
+If we want to say, "Hey, we do ticket tracking," or, "We do customer support," or whatever, the YC start-up, the 50-person company, the 500 and 5,000, and the 50,000, they're -- it's a whole different ball game at every level. Again, if you say, "We want to be it for number one for the entire industry," that's a lot of if statements to deal with all those workflows. And every one of those if statements has a team of engineers and PMs and designers behind it.
+
+So you have that tension of market size versus product quality and it's a hard puzzle to solve. And again, there are other industries, in this case, Coca-Cola or whatever, where they don't actually have to play that game. So that's why they’re being on software should invalidate my own career.
+
+Patrick: [00:55:42] It's an amazing, amazing answer and list. Does it stand to reason then that the best software ever is Bitcoin?
+
+Des: [00:55:49] Possibly. I actually -- there are a few software products I've seen. To give you a s***** example, I'll just say like the Notes app on iOS, where actually, I know megacorp people and I know aged, old grandfathers or whatever, and they all use Notes. So there are some products that cut through and just say, "We are one thing, and we're that one thing for everyone and you all like it." And I think that's really, really cool.
+
+Another example will be, say, Bear.app, which is a really nice notetaking tool that I use, where they have just one product for everyone, but everyone uses the product and everyone uses it in roughly the same way. So you get a lot closer to that idea of liquid profit because they just need to build one thing for one person, and it works really, really well.
+
+Patrick: [00:56:25] Maybe Craigslist belongs in the list or something.
+
+Des: [00:56:26] Yes. For sure. I think there's a lot to be said about something like Craigslist in that regard. They dodged a lot of bullets by keeping it simple. And the flip side is imagine if Craigslist had VCs. Imagine the ways in which it would have gone wrong because they would have been pushed for growth, pushed for growth. They would have added features. They would have gone through pointless redesigns and rebrands and all that. And they probably would have honestly lost their way somehow.
+
+So I can't comment on Bitcoin specifically. I always feel they’ve just -- I’m undergone in terms of odds. But I do think a simple thing that ultimately is the same way is a really nice place to be. But I can't help but feel the wolves will be constantly at the door, trying to copy exactly your thing because it looks so easy.
+
+Patrick: [00:57:03] Well, what's interesting is when you think about the different counterexamples, maybe Twitter is an interesting one here. Not that it's ever been a great business, but it's more or less been the same. The product velocity is not high, so the value is the network.
+
+Or maybe the other examples would be vertical market operating system software, where the software also sucks there, but the data store that gets dumped into this thing is so valuable that no one bothers to switch because, "My business is built on this thing." So maybe your point is right about all software is just the database and some UI on top. And you should think more about the database either as a network of people or critical information that a business is storing inside of it. And that's it. You just invest in one of those two things and avoid everything else. Avoid workflow. Avoid nice UIs, like you said, it's a fascinating question.
+
+Des: [00:57:52] It is. It's unfortunately one we have to spend our lives trying to wrestle with. But yes, I don't want to -- the wrong way to cross all this is Des thinks UI doesn't matter. It absolutely is not the case. It's just, Des does not think neat UI is a sustainable position. And to make it sustainable, you have to be maniacally investing in it all the time to keep it as the Michelin star project management app or whatever it is in order to stay at the top.
+
+Life Advice and Great Kindness
+
+Patrick: [00:58:12] Do you have other worldviews that would be spiciest at a dinner table conversation or something to rile people up?
+
+Des: [00:58:20] Jesus, yes, I have a whole folder of things that Des can't tweet.
+
+Patrick: [00:58:22] Give us one or two.
+
+Des: [00:58:23] Here's one hot take right now that I've seen a lot of my own portfolio go through. And it's not a positive one, but I'm sure you see a lot of investment reports that go like this, saying, "We're a Series A or a Series B. We've managed burn. We've executed a RIF. We now have 74 months of runway, and we feel really good about that." And what I translate that to is, "I am going to piss away six years and two months of the best productive years of my entire career pushing this boat up a hill to see if it gets to the top." And it's not going to.
+
+And honestly, I want to reach out to the founders and connect to them on a human level to say, "Hey, neither I nor I don't think many of your VCs who are actually good humans want to see you do that. I think you should set yourself a time limit of like six months or a year to get this thing growing. And if it doesn't, wrap it up."
+
+It's not because I want the money back. It really isn’t. It's just -- it's such a waste of human capital. I think what happens in an existential crisis is people try to preserve their life. And you have to realize your life is not your start-up's life and there's a line between them. And the worst thing that happens to you isn't that you go out of business. The worst thing is that you stay in business banging your head off a wall.
+
+Patrick: [00:59:32] Waste your time and your life.
+
+Des: [00:59:35] In both cases, I'm not seeing my money back. But at least one of them, you're not emptying the best years of your career. And I think that's probably one where even as I say it now, it sounds still too blunt. But the point I don't think gets talked about enough right now, there are a lot of companies that are dead by definition, based on their last round or their last two rounds' valuations.
+
+And honestly, I don't think that suits anyone. I think even from a venture capital perspective, I think they'd rather take the scraps or the pennies on the dollar back. They're probably back to founder again just under different market conditions. 2021 was a hell of a drug. We all lost a round of ourselves. And that's okay. You don't have to pay the full price of that.
+
+The last thing I always say to people is, "You have to measure the ROI of the time you spend based on the future expected value of it." So go on a rager with your friends and wake up hungover, and that's fine. As long as you feel like those friendships and those memories, they're going to be useful to you in the future, great.
+
+Similarly, whatever you do with your business, think about it from a point of view of when you're like 50 or take your age and double it or whatever. Will you value the things you've been doing right now? A lot of this is my way to get people to stop scrolling Instagram or TikTok or whatever because this is not a useful use of time. But I think it's quite easy. I say this because I probably regret most of my 20s in this regard, but it's quite easy to go through life just too much in the moment so that you forget to actually think about the compounded interest of the time you're spending.
+
+And I think by the time you realize that, that s*** matters, you're like 30. And I am haunted by this quote that I read it somewhere. Inside every 80-year old is an 18-year-old wondering what the f*** just happened. And I think that’s something that haunts my mind.
+
+Patrick: [01:01:04] It’s scary.
+
+Des: [01:01:05] Yes, it is scary because I'm 42. So I'm already starting to wonder what happened.
+
+Patrick: [01:01:10] I've so enjoyed talking to you from the early days of when you're conceptualizing Fin. And it's been such an interesting example for me to watch of really talented team and company approaching something new that could be this disruptive innovation story. But in many cases, yours included, I don't know, it's always different. And it's always interesting to see how companies handle this. I've so enjoyed our conversations in this one, too. I ask the same traditional closing question of everybody, and I'm bummed we're out of time. What is the kindest thing that anyone’s ever done for you?
+
+Des: [01:01:39] I'll try and stay emotionally neutral as I tell this story. I wrote about this story in my blog. But when I was growing up, it was 1980s Dublin, not a very rich place. My dad had left home. My mom was left. I'm the youngest of seven children and I have three elder brothers, three elder sisters. And in 1988, when I was seven years old, I basically was obsessed with this computer called the Amiga 500 by Commodore. I don't know if you remember it. And one of my friends -- it just seemed like the coolest thing ever and I just wouldn't shut up about it. As a kid, I just wouldn't shut up about it.
+
+And I guess I was still just at that awkward age where I was too young to work out why I couldn't have one. Because basically, my friend had one, therefore, it was gettable. So why didn't I have one? And I guess my mom didn’t even know how to explain for us 1980s Dublin, divorce -- well, divorce wasn't even welcome around at that time. So it was just, why does this woman not have her husband anymore? That was how Catholic Ireland would have seen it.
+
+And then one day for my birthday -- I think it was my ninth birthday. I'm not even that sure. It was my ninth birthday. It showed up. And at the time, I was really thankful, but it's only really around when I was like 25 or something that, that the actual penny dropped of like, how the hell did she pull that off. And because of -- genuinely, I can give you a full lineal history.
+
+Because of the Amiga 500, I learned Amiga Workbench, I learned AMOS, I learned how to program bits of memory. I enrolled in computer science. I met a guy. We started a blog. I met Eoghan as the CEO of Intercom. I met my wife at the same meet-up that Eoghan had organized where I met him for the first time.
+
+The entire history of my career goes back to that one machine. I still don't really know how she got the money together for me, but she did and that was the kindest thing. I only hoped I could pay her back, but she passed away, unfortunately. So whatever it cost, like 700 Irish pounds, which is probably $1,000 or something like that in dollars, I would have loved to have -- now that I've got some money, I would have loved to pay that back, but that opportunity was never presented.
+
+Patrick: [01:03:23] It makes me -- it's really interesting to think about, what equivalent thing could you do to unlock a path like that for somebody else?
+
+Des: [01:03:31] I think about that a lot.
+
+Patrick: [01:03:32] I think that is an incredible question to think about. And probably more often than not, it's something that may be doable. It's the thought about what it could be and then going and doing it. It's magical, wonderful awesome story. I've done a lot of these, I think, around 400 or something. And I haven't heard a story quite like that in response to the question, so what an awesome place to close. Thank you so much for your time.
+
+Des: [01:03:54] Thank you, Patrick.
