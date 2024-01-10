@@ -13,12 +13,12 @@ export const run = async () => {
       if (doc.type === 'node--recipe') {
         return new Document({
           metadata: { source: doc.links.self.href },
-          pageContent: 
+          pageContent:
           `
-          Title: ${doc.attributes.title}, 
-          Difficulty: ${doc.attributes.field_difficulty}, 
-          Ingredients: ${doc.attributes.field_ingredients}, 
-          Recipe: ${doc.attributes.field_recipe_instruction?.value.replace(/<[^>]+>/g, "").replace(/\n/g, "")}, 
+          Title: ${doc.attributes.title},
+          Difficulty: ${doc.attributes.field_difficulty},
+          Ingredients: ${doc.attributes.field_ingredients},
+          Recipe: ${doc.attributes.field_recipe_instruction?.value.replace(/<[^>]+>/g, "").replace(/\n/g, "")},
           Summary: ${doc.attributes.field_summary?.value.replace(/<[^>]+>/g, "").replace(/\n/g, "")}
           `
         })
@@ -26,7 +26,7 @@ export const run = async () => {
       const pageContent = `Title: ${doc.attributes.title} - ${doc.attributes.body!.value.replace(/<[^>]+>/g, "").replace(/\n/g, "")}`
       return new Document({ metadata: { source: doc.links.self.href }, pageContent})
     })
-  
+
   // const llm = new OpenAI({ openAIApiKey: process.env.OPENAI_API_KEY!, temperature: 0 });
   // docs.map(async (doc) => {
   //   console.log(doc.pageContent)
@@ -35,7 +35,7 @@ export const run = async () => {
 
   console.log("Creating vector store...");
   /* Create the vectorstore */
-  const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+  const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({modelName: "text-embedding-ada-002"}));
   await vectorStore.save("data");
 };
 
