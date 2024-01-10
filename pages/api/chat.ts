@@ -70,7 +70,7 @@ export default async function handler(
     .map((msg, i) => `${msg.role}: ${msg.content}.`)
     .join('\n')
 
-  const vectorstore = await HNSWLib.load(dir, new OpenAIEmbeddings())
+  const vectorstore = await HNSWLib.load(dir, new OpenAIEmbeddings({modelName: "text-embedding-ada-002"}))
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     // Important to set no-transform to avoid compression, which will delay
