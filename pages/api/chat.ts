@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import path from 'path'
-import { HNSWLib } from 'langchain/vectorstores/hnswlib'
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
-import { makeChain } from './util'
-import { Message } from '@/types'
+import type { NextApiRequest, NextApiResponse } from "next";
+import path from "path";
+import { HNSWLib } from "@langchain/community/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { makeChain } from "./util";
+import { Message } from "@/types";
 /*
 import { z } from "zod";
 
@@ -61,37 +61,40 @@ const llmReasoning = async (question: string, answer: string, sourceDocuments: a
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
-  const body = req.body as { question: string; history: Message[] }
-  const dir = path.resolve(process.cwd(), 'data')
+  const body = req.body as { question: string; history: Message[] };
+  const dir = path.resolve(process.cwd(), "data");
 
   const chat_history = body.history
     .map((msg, i) => `${msg.role}: ${msg.content}.`)
-    .join('\n')
+    .join("\n");
 
-  const vectorstore = await HNSWLib.load(dir, new OpenAIEmbeddings({modelName: "text-embedding-ada-002"}))
+  const vectorstore = await HNSWLib.load(
+    dir,
+    new OpenAIEmbeddings({ modelName: "text-embedding-ada-002" })
+  );
   res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
+    "Content-Type": "text/event-stream",
     // Important to set no-transform to avoid compression, which will delay
     // writing response chunks to the client.
     // See https://github.com/vercel/next.js/issues/9965
-    'Cache-Control': 'no-cache, no-transform',
-    Connection: 'keep-alive',
-  })
+    "Cache-Control": "no-cache, no-transform",
+    Connection: "keep-alive",
+  });
 
   const sendData = (data: string) => {
-    res.write(data)
-  }
+    res.write(data);
+  };
   const chain = await makeChain(vectorstore, (token: string) => {
-    sendData(token)
-  })
+    sendData(token);
+  });
 
   try {
     const result = await chain.invoke({
       question: body.question,
-      chat_history
-    })
+      chat_history,
+    });
 
     // try {
     //   const sources = JSON.parse(await llmReasoning(body.question, result.text, result.sourceDocuments))
@@ -107,9 +110,9 @@ export default async function handler(
     //   console.log('sources could not be extracted')
     // }
   } catch (err) {
-    console.error(err)
+    console.error(err);
     // Ignore error
   } finally {
-    res.end()
+    res.end();
   }
 }

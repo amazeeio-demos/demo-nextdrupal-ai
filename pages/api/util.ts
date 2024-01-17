@@ -1,18 +1,19 @@
-import { OpenAI } from 'langchain/llms/openai'
+import { OpenAI } from "@langchain/openai";
 import {
   LLMChain,
   ConversationalRetrievalQAChain,
   loadQAChain,
-} from 'langchain/chains'
-import { HNSWLib } from 'langchain/vectorstores/hnswlib'
-import { PromptTemplate } from 'langchain/prompts'
+} from "langchain/chains";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { PromptTemplate } from "@langchain/core/prompts";
 
-const CONDENSE_PROMPT = PromptTemplate.fromTemplate(`Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+const CONDENSE_PROMPT =
+  PromptTemplate.fromTemplate(`Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
 Chat History:
 {chat_history}
 Human: {question}
-Standalone question:`)
+Standalone question:`);
 
 // If the question is not about a recipe or ingredients or composetheweb, politely inform them that you can only answer questions about food, recipes, and composetheweb.
 const QA_PROMPT = PromptTemplate.fromTemplate(
@@ -43,20 +44,20 @@ RULES
 =========
 Answer in Markdown: 
 Source: 
-`,
-)
+`
+);
 
 export const makeChain = async (
   vectorstore: HNSWLib,
-  onTokenStream?: (token: string) => void,
+  onTokenStream?: (token: string) => void
 ) => {
   const questionGenerator = new LLMChain({
     llm: new OpenAI({ temperature: 0 }),
     prompt: CONDENSE_PROMPT,
-  })
+  });
 
   const llm = new OpenAI({
-    modelName: 'gpt-4',
+    modelName: "gpt-4",
     temperature: 0,
     streaming: Boolean(onTokenStream),
     callbacks: [
@@ -64,12 +65,12 @@ export const makeChain = async (
         handleLLMNewToken: onTokenStream,
       },
     ],
-  })
+  });
 
   const docChain = loadQAChain(llm, {
     prompt: QA_PROMPT,
-    type: 'stuff',
-  })
+    type: "stuff",
+  });
 
   const chain = new ConversationalRetrievalQAChain({
     // verbose: true,
@@ -79,8 +80,7 @@ export const makeChain = async (
     returnSourceDocuments: true,
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
-  })
+  });
 
-
-  return chain
-}
+  return chain;
+};
